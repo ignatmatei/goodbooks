@@ -6,11 +6,11 @@ import json
 # Init Flask
 app = Flask(__name__)
 # Load dataset.json once
-with open("dataset.json", "r") as f:
+with open('dataset.json', 'r') as f:
     books_data = json.load(f)
 
 # Map books by book_id for fast lookup
-book_map = {book["book_id"]: book for book in books_data}
+book_map = {book['book_id']: book for book in books_data}
 
 # Load Firebase config and initialize Firebase app
 cred = credentials.Certificate("firebase_config.json")
@@ -78,9 +78,7 @@ def delete_user(user_id):
     db.collection(COLLECTION).document(user_id).delete()
     return jsonify({"message": "User deleted"}), 200
 
-
 # ✅ --- Get all books a user is reading, with full info ---
-
 
 @app.route("/books/<book_id>", methods=["GET"])
 def get_book_by_id(book_id):
@@ -103,98 +101,101 @@ def get_book_by_id(book_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-@app.route("/book/<book_id>", methods=["GET"])
+@app.route('/book/<book_id>', methods=['GET'])
 def get_book(book_id):
     try:
-        books_ref = db.reference("books")
+        books_ref = db.reference('books')
         books_data = books_ref.get()
 
         if not books_data:
-            return jsonify({"error": "No books found in the database"}), 404
+            return jsonify({'error': 'No books found in the database'}), 404
 
         for key, book in books_data.items():
-            if book.get("book_id") == book_id:
+            if book.get('book_id') == book_id:
                 return jsonify(book), 200
 
-        return jsonify({"error": f"No book found with book_id '{book_id}'"}), 404
+        return jsonify({'error': f"No book found with book_id '{book_id}'"}), 404
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({'error': str(e)}), 500
 
 
 import google.generativeai as genai  # make sure this is at the top
 
 # Load your Gemini API key
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"  # Replace with your actual key
+GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY'  # Replace with your actual key
 
 # === Route: Get book recommendation ===
 import requests
-
-
-@app.route("/book_by_key/<doc_key>", methods=["GET"])
+@app.route('/book_by_key/<doc_key>', methods=['GET'])
 def get_book_by_key(doc_key):
     try:
-        book_ref = db.reference(f"books/{doc_key}")
+        book_ref = db.reference(f'books/{doc_key}')
         print(f"Fetching book with key: {doc_key}")
         book_data = book_ref.get()
 
         if book_data:
             return jsonify(book_data), 200
         else:
-            return jsonify({"error": f'No book found with key "{doc_key}"'}), 404
+            return jsonify({'error': f'No book found with key "{doc_key}"'}), 404
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({'error': str(e)}), 500
 
+from flask import Flask, jsonify, request
+import requests
+from google import genai
+from google.genai import types
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+if GEMINI_API_KEY is None:
+    raise ValueError("GEMINI_API_KEY is not set")
+
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 @app.route("/users/<user_id>/recommendation", methods=["GET"])
 def get_book_recommendation(user_id):
-    # 1️⃣ Call your own /books endpoint
     try:
-        # Replace with your server's actual hostname & port
         books_api_url = f"http://localhost:5000/users/{user_id}/books"
         response = requests.get(books_api_url)
         response.raise_for_status()
-        books = response.json()
+        data = response.json()
+        books = data.get("books", [])
     except requests.RequestException as e:
         return jsonify({"error": f"Failed to fetch books: {str(e)}"}), 500
 
-    # if not books:
-    #    return jsonify({"error": "User has no books"}), 400
+    if not books:
+        return jsonify({"error": "User has no books"}), 400
 
-    # 2️⃣ Prepare prompt
-    book_details = ", ".join(
-        f"{book['title']} (Author: {book.get('author', 'N/A')}, Genre: {book.get('genre', 'N/A')})"
+    book_details = ', '.join(
+        f"{book['title']} (Author: {book.get('author', 'N/A')}, Genre: {', '.join(book.get('genre', [])) if isinstance(book.get('genre'), list) else book.get('genre', 'N/A')})"
         for book in books
     )
+
+    # Only allow recommendations from titles in dataset.json
+    available_titles = [book['title'] for book in books_data]
     prompt = (
         f"Based on these books the user has read: {book_details}, "
-        f"please recommend one new book the user might enjoy and explain why."
+        f"choosing only from these titles: {', '.join(available_titles)}. "
+        f"Answer with the top 5 book title and id. Top 5 recommendations are: "
     )
 
-    # 3️⃣ Call Gemini
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-1.5-flash")
-    gemini_response = model.generate_content(prompt)
+    # Use your working genai client call
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            thinking_config=types.ThinkingConfig(thinking_budget=0)  # disables thinking
+        ),
+    )
 
-    # 4️⃣ Return recommendation
-    return jsonify({"recommendation": gemini_response.text.strip()})
-
-
-# -----------------------------------------
-# Route: Get books by exact title
-# -----------------------------------------
-@app.route("/books/title/<title>", methods=["GET"])
-def get_books_by_title(title):
-    results = db.collection("books").where("title", "==", title).stream()
-    books = [doc.to_dict() for doc in results]
-
-    if not books:
-        return jsonify({"error": "No books found with that title"}), 404
-
-    return jsonify(books)
-
+    return jsonify({
+        "recommendation": response.text.strip()
+    })
 
 @app.route("/users/<user_id>/books", methods=["GET"])
 def get_user_books(user_id):
@@ -204,12 +205,10 @@ def get_user_books(user_id):
 
     user_data = doc.to_dict()
     user_book_ids = user_data.get("book_ids", [])
-
+    
     # Look up each book ID in the preloaded dataset
     user_books = [book_map[book_id] for book_id in user_book_ids if book_id in book_map]
-
+    
     return jsonify({"user_id": user_id, "books": user_books})
-
-
 if __name__ == "__main__":
     app.run(debug=True)
