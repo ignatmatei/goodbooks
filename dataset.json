@@ -1,0 +1,272 @@
+[
+  {
+    "book_id": "B001",
+    "title": "The Last Ember",
+    "author": "Anya Sharma",
+    "publication_year": 2022,
+    "genre": ["Fantasy", "Adventure"],
+    "average_score": 4.5,
+    "description": "In a world where magic is fading, a young orphan discovers a forgotten ember, rumored to be the last spark of true magic. Her journey to rekindle it will lead her through ancient ruins, perilous forests, and face-to-face with the forces that seek to extinguish all hope."
+  },
+  {
+    "book_id": "B002",
+    "title": "Silicon Shadows",
+    "author": "Kai Ren",
+    "publication_year": 2023,
+    "genre": ["Sci-Fi", "Cyberpunk"],
+    "average_score": 4.2,
+    "description": "In a sprawling metropolis dominated by megacorporations, a brilliant hacker uncovers a conspiracy that threatens to blur the lines between human and machine, forcing him to question the very nature of reality."
+  },
+  {
+    "book_id": "B003",
+    "title": "The Whispering Willows",
+    "author": "Eleanor Vance",
+    "publication_year": 2021,
+    "genre": ["Mystery", "Gothic"],
+    "average_score": 3.9,
+    "description": "A reclusive artist moves into a secluded manor house, only to find herself haunted by the echoes of a past tragedy and the unsettling secrets whispered by the ancient willows surrounding the estate."
+  },
+  {
+    "book_id": "B004",
+    "title": "Echoes of the Great War",
+    "author": "Marcus Thorne",
+    "publication_year": 2019,
+    "genre": ["Historical Fiction", "War"],
+    "average_score": 4.7,
+    "description": "Through the eyes of a young soldier and a compassionate nurse, this novel paints a vivid and poignant picture of the human cost and enduring spirit amidst the devastation of the First World War."
+  },
+  {
+    "book_id": "B005",
+    "title": "Culinary Chronicles: A Chef's Journey",
+    "author": "Isabelle Dubois",
+    "publication_year": 2020,
+    "genre": ["Biography", "Food"],
+    "average_score": 4.1,
+    "description": "From a humble beginning in a small French village to the dazzling heights of Michelin-starred restaurants, this autobiography recounts the triumphs and tribulations of a chef dedicated to the art of cuisine."
+  },
+  {
+    "book_id": "B006",
+    "title": "Quantum Entanglement for Dummies",
+    "author": "Dr. Aris Thorne",
+    "publication_year": 2018,
+    "genre": ["Science", "Non-fiction"],
+    "average_score": 3.8,
+    "description": "Demystifying one of the most perplexing concepts in quantum physics, this book provides an accessible and engaging introduction to entanglement, making it understandable for even the most novice readers."
+  },
+  {
+    "book_id": "B007",
+    "title": "The Serpent's Coil",
+    "author": "Lena Petrova",
+    "publication_year": 2024,
+    "genre": ["Thriller", "Espionage"],
+    "average_score": 4.3,
+    "description": "When a brilliant double agent is unmasked, she must navigate a deadly game of cat and mouse across international borders, trusting no one as she tries to uncover who betrayed her."
+  },
+  {
+    "book_id": "B008",
+    "title": "Starlight Serenade",
+    "author": "Julian Reed",
+    "publication_year": 2022,
+    "genre": ["Romance", "Contemporary"],
+    "average_score": 4.0,
+    "description": "Two strangers meet under a sky full of stars and embark on an unexpected journey of love, self-discovery, and the courage to chase their dreams, even when the odds are against them."
+  },
+  {
+    "book_id": "B009",
+    "title": "Chronicles of Aethelgard: The Dragon's Breath",
+    "author": "Gareth Stone",
+    "publication_year": 2021,
+    "genre": ["Epic Fantasy"],
+    "average_score": 4.6,
+    "description": "As an ancient evil awakens, threatening to plunge the realm of Aethelgard into eternal darkness, a reluctant hero must unite disparate factions and confront a terrifying dragon to save his people."
+  },
+  {
+    "book_id": "B010",
+    "title": "The Algorithm of Love",
+    "author": "Dr. Emily Chen",
+    "publication_year": 2023,
+    "genre": ["Sci-Fi", "Romance"],
+    "average_score": 3.7,
+    "description": "In a future where AI matches partners with unparalleled accuracy, a cynical data scientist designs an algorithm to find 'true love' and unexpectedly finds herself questioning her own preconceived notions."
+  },
+  {
+    "book_id": "B011",
+    "title": "Forgotten Tombs of the Sahara",
+    "author": "Professor Alan Vance",
+    "publication_year": 2019,
+    "genre": ["Archaeology", "Non-fiction"],
+    "average_score": 4.4,
+    "description": "Join an intrepid archaeologist as he uncovers long-lost tombs and sheds new light on ancient civilizations hidden beneath the shifting sands of the Sahara desert."
+  },
+  {
+    "book_id": "B012",
+    "title": "The Clockwork Heart",
+    "author": "Ophelia Blackwood",
+    "publication_year": 2020,
+    "genre": ["Steampunk", "Romance"],
+    "average_score": 4.1,
+    "description": "In a Victorian-inspired world powered by gears and steam, a brilliant inventor with a clockwork heart falls for a mysterious airship pirate, leading to an adventure filled with intrigue and unexpected passion."
+  },
+  {
+    "book_id": "B013",
+    "title": "Beneath the Crimson Moon",
+    "author": "Liam O'Connell",
+    "publication_year": 2024,
+    "genre": ["Horror", "Supernatural"],
+    "average_score": 3.6,
+    "description": "A remote village is plagued by a series of gruesome disappearances, and as a crimson moon rises, the inhabitants realize they are facing an ancient evil lurking just beyond their sight."
+  },
+  {
+    "book_id": "B014",
+    "title": "The Zen of Coding",
+    "author": "Hiroshi Tanaka",
+    "publication_year": 2022,
+    "genre": ["Self-help", "Technology"],
+    "average_score": 4.2,
+    "description": "More than just a guide to programming, this book explores the philosophical aspects of coding, promoting mindfulness, efficiency, and a harmonious approach to software development."
+  },
+  {
+    "book_id": "B015",
+    "title": "Whispers in the Vineyards",
+    "author": "Sofia Rossi",
+    "publication_year": 2021,
+    "genre": ["Contemporary Fiction", "Family Saga"],
+    "average_score": 3.9,
+    "description": "Generations of a family in Tuscany grapple with tradition, secrets, and the ever-changing landscape of their beloved vineyard, revealing the enduring bonds and bitter rivalries that define them."
+  },
+  {
+    "book_id": "B016",
+    "title": "Cosmic Drift",
+    "author": "Dr. Lena Petrova",
+    "publication_year": 2023,
+    "genre": ["Sci-Fi", "Space Opera"],
+    "average_score": 4.5,
+    "description": "A lone starship captain, haunted by a past tragedy, embarks on a perilous mission across uncharted galaxies to prevent an intergalactic war, encountering strange alien races and cosmic anomalies."
+  },
+  {
+    "book_id": "B017",
+    "title": "The Art of Imperfection",
+    "author": "Akira Mori",
+    "publication_year": 2020,
+    "genre": ["Philosophy", "Self-help"],
+    "average_score": 4.3,
+    "description": "Embracing flaws and finding beauty in the imperfect, this book draws on ancient wisdom and modern psychology to offer a refreshing perspective on self-acceptance and true happiness."
+  },
+  {
+    "book_id": "B018",
+    "title": "Shadows of the Crown",
+    "author": "Lady Evelyn Fitzwilliam",
+    "publication_year": 2018,
+    "genre": ["Historical Romance", "Regency"],
+    "average_score": 4.0,
+    "description": "Amidst the glittering ballrooms and whispered scandals of Regency England, a spirited duchess finds herself entangled in a web of political intrigue and a forbidden romance with a mysterious nobleman."
+  },
+  {
+    "book_id": "B019",
+    "title": "The Last Great Wilderness",
+    "author": "Samuel Green",
+    "publication_year": 2019,
+    "genre": ["Nature", "Travel"],
+    "average_score": 4.6,
+    "description": "A breathtaking exploration of the world's most remote and untouched natural landscapes, celebrating their raw beauty and advocating for their preservation against the encroaching tide of civilization."
+  },
+  {
+    "book_id": "B020",
+    "title": "Digital Delusions",
+    "author": "Chloe Zhang",
+    "publication_year": 2024,
+    "genre": ["Thriller", "Techno-thriller"],
+    "average_score": 3.8,
+    "description": "When a new virtual reality game blurs the lines between reality and simulation, a group of players find themselves trapped in a terrifying digital world where their deepest fears come to life."
+  },
+  {
+    "book_id": "B021",
+    "title": "The Alchemy of Dreams",
+    "author": "Seraphina Moon",
+    "publication_year": 2022,
+    "genre": ["Magical Realism", "Fantasy"],
+    "average_score": 4.2,
+    "description": "In a whimsical town where dreams manifest as tangible objects, a young woman with the rare ability to sculpt dreams must protect her community from a shadowy figure who seeks to steal the very essence of their imagination."
+  },
+  {
+    "book_id": "B022",
+    "title": "Beneath a Scarlet Sky",
+    "author": "Mark Sullivan",
+    "publication_year": 2017,
+    "genre": ["Historical Fiction", "WWII"],
+    "average_score": 4.7,
+    "description": "Based on a true story, this gripping novel follows a young Italian man's perilous journey through war-torn Italy, risking his life to save Jews from Nazi persecution."
+  },
+  {
+    "book_id": "B023",
+    "title": "The Neuroscientist's Guide to Happiness",
+    "author": "Dr. Ben Carter",
+    "publication_year": 2021,
+    "genre": ["Psychology", "Self-help"],
+    "average_score": 4.1,
+    "description": "Drawing on the latest research in neuroscience, this book offers practical strategies and insights into how our brains create happiness, providing a scientific roadmap to a more fulfilling life."
+  },
+  {
+    "book_id": "B024",
+    "title": "Crimson Tides",
+    "author": "Zara Khan",
+    "publication_year": 2023,
+    "genre": ["Pirate Fiction", "Adventure"],
+    "average_score": 4.0,
+    "description": "A swashbuckling tale of a fearless female pirate captain and her crew, sailing treacherous seas in search of legendary treasure, while battling rival buccaneers and the unforgiving forces of nature."
+  },
+  {
+    "book_id": "B025",
+    "title": "The Urban Gardener's Handbook",
+    "author": "Lily Chen",
+    "publication_year": 2019,
+    "genre": ["Gardening", "Practical Guide"],
+    "average_score": 3.9,
+    "description": "Transforming small spaces into lush havens, this comprehensive guide provides practical tips, creative ideas, and expert advice for cultivating vibrant gardens in urban environments."
+  },
+  {
+    "book_id": "B026",
+    "title": "A Symphony of Stars",
+    "author": "Astrid Nilsson",
+    "publication_year": 2020,
+    "genre": ["Poetry", "Science"],
+    "average_score": 4.3,
+    "description": "A collection of evocative poems that intertwine the wonders of the cosmos with the depths of human emotion, exploring themes of creation, existence, and our place in the universe."
+  },
+  {
+    "book_id": "B027",
+    "title": "The Last Resort",
+    "author": "Arthur Finch",
+    "publication_year": 2022,
+    "genre": ["Comedy", "Satire"],
+    "average_score": 3.7,
+    "description": "A group of mismatched tourists finds themselves stranded at a comically inept luxury resort, leading to a series of hilarious mishaps and an unlikely bonding experience."
+  },
+  {
+    "book_id": "B028",
+    "title": "Echoes of the Forgotten City",
+    "author": "Dr. Maya Gupta",
+    "publication_year": 2023,
+    "genre": ["Archaeology", "Mystery"],
+    "average_score": 4.4,
+    "description": "An ambitious archaeologist uncovers clues to a legendary lost city, but her quest leads her into a dangerous web of ancient curses and modern-day conspiracies."
+  },
+  {
+    "book_id": "B029",
+    "title": "The Quantum Leap Year",
+    "author": "Professor Leo Vance",
+    "publication_year": 2021,
+    "genre": ["Sci-Fi", "Time Travel"],
+    "average_score": 4.5,
+    "description": "A brilliant but eccentric physicist invents a device that allows him to experience a 'quantum leap year,' revisiting past moments in his life, only to discover that changing the past has unforeseen consequences."
+  },
+  {
+    "book_id": "B030",
+    "title": "Crimson Petals, Golden Threads",
+    "author": "Elara Vance",
+    "publication_year": 2024,
+    "genre": ["Historical Fiction", "Romance"],
+    "average_score": 4.2,
+    "description": "Set against the backdrop of a tumultuous imperial court, a forbidden love blossoms between a talented courtesan and a steadfast warrior, navigating political intrigue and personal sacrifice."
+  }
+]
