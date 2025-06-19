@@ -209,6 +209,17 @@ def get_user_books(user_id):
     # Look up each book ID in the preloaded dataset
     user_books = [book_map[book_id] for book_id in user_book_ids if book_id in book_map]
     
-    return jsonify({"user_id": user_id, "books": user_books})
+    return jsonify
+
+import random
+@app.route("/random_book", methods=["GET"])
+def get_random_book():
+    max_id = 29
+    random_id = random.randint(0, max_id)
+    random_book = books_data[random_id]
+    return jsonify({
+        "title": random_book["title"],
+        "author": random_book["author"]
+    })
 if __name__ == "__main__":
     app.run(debug=True)
