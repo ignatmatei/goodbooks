@@ -1,0 +1,5 @@
+{
+  "name": "Book Recommendation Feed",
+  "description": "A mobile UI for browsing book recommendations, inspired by a user-provided image.",
+  "requestFramePermissions": []
+}
