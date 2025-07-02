@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.run/@google/genai"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="mainAppView" class="view app-container">
+        <header class="app-header">
+            <div class="search-bar" role="search">
+                <input type="text" placeholder="Search for books" aria-label="Search for books" id="searchInput">
+                <button class="search-button" aria-label="Search" id="searchButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+        </header>
+
+        <nav class="category-filters" aria-label="Book categories">
+            <ul class="categories-list">
+                <li class="category-item active" data-filter="All" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">📚</span> All
+                </li>
+                <li class="category-item" data-filter="Fantasy" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🏰</span> Fantasy
+                </li>
+                <li class="category-item" data-filter="SF" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🚀</span> SF
+                </li>
+                <li class="category-item" data-filter="Romance" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">❤️</span> Romance
+                </li>
+                <li class="category-item" data-filter="History" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">📜</span> History
+                </li>
+                <li class="category-item" data-filter="Biography" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🧑‍💼</span> Biography
+                </li>
+                <li class="category-item" data-filter="Science" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🔬</span> Science
+                </li>
+                <li class="category-item" data-filter="Business" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">💼</span> Business
+                </li>
+                <li class="category-item" data-filter="Art" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🎨</span> Art
+                </li>
+                <li class="category-item" data-filter="Philosophy" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">💡</span> Philosophy
+                </li>
+                <li class="category-item" data-filter="Psihology" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🧠</span> Psihology
+                </li>
+                <li class="category-item" data-filter="Thriller" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">🔪</span> Thriller
+                </li>
+                <li class="category-item" data-filter="Poems" role="button" tabindex="0">
+                    <span class="category-icon" aria-hidden="true">✒️</span> Poems
+                </li>
+            </ul>
+        </nav>
+
+        <main class="content-area">
+            <ul class="book-list" aria-label="List of books">
+                <li class="book-card" data-category="Fantasy,New" data-cover-class="book-cover-red" role="button" tabindex="0">
+                    <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-red">
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Thorn and Roses</h3>
+                        <p class="book-author">Sarah J. Maas</p>
+                    </div>
+                </li>
+                <li class="book-card" data-category="Fantasy" data-cover-class="book-cover-green" role="button" tabindex="0">
+                    <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-green"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Mist and Fury</h3>
+                        <p class="book-author">Sarah J. Maas</p>
+                    </div>
+                </li>
+                <li class="book-card" data-category="Fiction" data-cover-class="book-cover-teal" role="button" tabindex="0">
+                     <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-teal"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Echoes of Time</h3>
+                        <p class="book-author">Maya Lin</p>
+                    </div>
+                </li>
+                 <li class="book-card" data-category="Fiction,eBooks" data-cover-class="book-cover-orange" role="button" tabindex="0">
+                     <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-orange"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">The Silent Star</h3>
+                        <p class="book-author">Ken Liu</p>
+                    </div>
+                </li>
+                <li class="book-card" data-category="Fantasy" data-cover-class="book-cover-blue" role="button" tabindex="0">
+                    <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-blue"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Frost and Starlight</h3>
+                        <p class="book-author">Sarah J. Maas</p>
+                    </div>
+                </li>
+                <li class="book-card" data-category="Fantasy" data-cover-class="book-cover-purple" role="button" tabindex="0">
+                    <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-purple"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Wings and Ruin</h3>
+                        <p class="book-author">Sarah J. Maas</p>
+                    </div>
+                </li>
+                 <li class="book-card" data-category="Fiction,eBooks,New" data-cover-class="book-cover-yellow" role="button" tabindex="0">
+                     <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-yellow"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Digital Realms</h3>
+                        <p class="book-author">Alex Chen</p>
+                    </div>
+                </li>
+                <li class="book-card" data-category="Fiction,eBooks" data-cover-class="book-cover-lime" role="button" tabindex="0">
+                     <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-lime"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Cybernetic Dreams</h3>
+                        <p class="book-author">Eva Rostova</p>
+                    </div>
+                </li>
+                <li class="book-card" data-category="Manga,New" data-cover-class="book-cover-yellow" role="button" tabindex="0">
+                    <div class="book-cover-wrapper">
+                        <div class="book-cover book-cover-yellow"></div>
+                    </div>
+                    <div class="book-info">
+                        <h3 class="book-title">Ninja Scrolls Vol. 1</h3>
+                        <p class="book-author">Masashi K.</p>
+                    </div>
+                </li>
+            </ul>
+            <div id="noResultsMessage" class="no-results-message" style="display: none;">
+                No books found matching your criteria.
+            </div>
+        </main>
+    </div>
+
+    <div id="bookDetailView" class="view book-detail-view hidden" aria-live="polite" role="region" aria-label="Book details">
+        <header class="book-detail-header">
+            <button id="backButton" class="back-button" aria-label="Back to previous page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                Back
+            </button>
+        </header>
+        <div class="book-detail-content">
+            <div id="bookDetailCover" class="book-detail-cover"></div>
+            <h2 id="bookDetailTitle" class="book-detail-title"></h2>
+            <p id="bookDetailAuthor" class="book-detail-author"></p>
+            
+            <button id="bookmarkButton" class="bookmark-button" aria-pressed="false">
+                <span class="bookmark-icon" aria-hidden="true">🔖</span>
+                <span class="bookmark-text">Bookmark</span>
+            </button>
+
+            <div class="detail-section">
+                <h3>Summary</h3>
+                <p id="bookDetailSummary" class="book-detail-summary"></p>
+            </div>
+            <div class="detail-section">
+                <h3>Categories</h3>
+                <p id="bookDetailCategories" class="book-detail-categories"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="scrollFeedView" class="view hidden" aria-label="Discover books by scrolling">
+        <!-- Dynamically populated scroll items -->
+    </div>
+
+    <div id="bookmarksView" class="view app-container hidden" aria-label="Bookmarked books">
+        <header class="app-header bookmarks-header">
+            <h2>My Bookmarks</h2>
+        </header>
+        <main class="content-area">
+            <ul id="bookmarkedBookList" class="book-list" aria-label="List of bookmarked books">
+                <!-- Dynamically populated bookmarked books -->
+            </ul>
+            <div id="noBookmarksMessage" class="no-results-message" style="display: none;">
+                You haven't bookmarked any books yet.
+            </div>
+        </main>
+    </div>
+
+    <div id="friendFeedView" class="view app-container hidden" aria-label="Friend activity feed">
+        <header class="app-header friend-feed-header">
+            <h2>Friend Activity</h2>
+        </header>
+        <main class="content-area" role="feed" aria-live="polite">
+            <ul id="friendActivityList" class="friend-activity-list">
+                <!-- Dynamically populated friend activity -->
+            </ul>
+            <div id="noFriendActivityMessage" class="no-results-message" style="display: none;">
+                Friend activity will appear here soon!
+            </div>
+        </main>
+    </div>
+
+
+    <nav class="bottom-navigation" role="navigation" aria-label="Main navigation">
+        <button id="navFeedButton" class="nav-button active" aria-label="Home" aria-current="page">
+            <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span>Home</span>
+        </button>
+        <button id="navScrollButton" class="nav-button" aria-label="Discover">
+            <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+            <span>Discover</span>
+        </button>
+        <button id="navFriendFeedButton" class="nav-button" aria-label="Friend Feed">
+            <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Friend Feed</span>
+        </button>
+        <button id="navBookmarksButton" class="nav-button" aria-label="Bookmarks">
+            <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            <span>Bookmarks</span>
+        </button>
+    </nav>
+
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

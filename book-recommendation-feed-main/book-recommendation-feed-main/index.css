@@ -1,0 +1,751 @@
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #FDF6F0; /* Light beige background */
+    color: #3A3A3A; /* Dark gray text */
+    padding-bottom: 50px; /* Space for smaller bottom navigation */
+    
+    /* Hide scrollbars while keeping scrolling functionality */
+    /* Firefox */
+    scrollbar-width: none;
+    /* Internet Explorer & old Edge */
+    -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, new Edge, Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.view { /* Common class for all top-level views */
+    /* Add any common view styling if needed, otherwise just used for JS selection */
+}
+
+.app-container {
+    max-width: 480px; /* Mobile width */
+    margin: 0 auto;
+    padding: 15px 10px;
+    box-sizing: border-box;
+}
+
+.app-header {
+    margin-bottom: 20px;
+}
+
+.bookmarks-header,
+.friend-feed-header { /* Combined for similar styling */
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.bookmarks-header h2,
+.friend-feed-header h2 { /* Combined for similar styling */
+    margin: 0;
+    font-size: 1.3rem;
+    color: #3A3A3A;
+}
+
+.friend-feed-header h2 {
+    font-size: 1.4rem; /* Slightly larger title */
+    margin-bottom: 15px; /* More space below title */
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    padding: 5px 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    max-width: 380px; /* Set the constraint width */
+    margin: 0 auto; /* Center the search bar */
+    border: 1px solid rgba(255, 107, 107, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.15);
+    border-color: rgba(255, 107, 107, 0.3);
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #3A3A3A;
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #AAAAAA;
+}
+
+.search-button {
+    background-color: #FF6B6B; /* Accent coral red */
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0; 
+}
+
+.search-button svg {
+    color: #FFFFFF;
+    width: 18px; 
+    height: 18px; 
+}
+
+.category-filters {
+    margin-bottom: 25px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    box-sizing: border-box; 
+}
+
+.category-filters::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.categories-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+}
+
+.category-item {
+    display: inline-flex; 
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #555555;
+    cursor: pointer;
+    padding-bottom: 5px;
+    white-space: normal; 
+    min-width: 60px; 
+}
+.category-item:last-child {
+    margin-right: 0;
+}
+
+.category-icon {
+    font-size: 1.8rem; 
+    margin-bottom: 5px;
+    width: 40px; 
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1)); 
+}
+
+.new-tag .new-icon-svg {
+    width: 30px; 
+    height: 40px; 
+}
+
+
+.category-item.active {
+    color: #FF6B6B;
+    font-weight: 600;
+}
+
+.content-area {
+    /* Styles for the main content area */
+}
+
+.book-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px; 
+    column-gap: 15px; /* Slightly reduced column gap */
+}
+
+.book-card {
+    background-color: transparent; 
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    cursor: pointer;
+}
+
+
+.book-cover-wrapper {
+    position: relative;
+    width: 130px; 
+    margin-bottom: 8px; 
+}
+
+.book-cover {
+    width: 100%; 
+    height: 190px; 
+    border-radius: 6px; 
+    background-color: #E0E0E0; 
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.12); 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 8px;
+    box-sizing: border-box;
+    background-image: linear-gradient(135deg, var(--book-color-1) 0%, var(--book-color-2) 100%);
+}
+
+.book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cdefs%3E%3ClinearGradient id='spine' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%23000;stop-opacity:0.1'/%3E%3Cstop offset='8%25' style='stop-color:%23000;stop-opacity:0.2'/%3E%3Cstop offset='12%25' style='stop-color:%23fff;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23000;stop-opacity:0.05'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='150' fill='url(%23spine)'/%3E%3C/svg%3E") no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.book-cover::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 3px;
+    height: calc(100% - 16px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+    border-radius: 1px;
+}
+
+.book-cover-red { 
+    --book-color-1: #E74C3C; 
+    --book-color-2: #C0392B;
+}
+.book-cover-green { 
+    --book-color-1: #2ECC71; 
+    --book-color-2: #27AE60;
+}
+.book-cover-blue { 
+    --book-color-1: #3498DB; 
+    --book-color-2: #2980B9;
+}
+.book-cover-purple { 
+    --book-color-1: #9B59B6; 
+    --book-color-2: #8E44AD;
+}
+.book-cover-teal { 
+    --book-color-1: #1ABC9C; 
+    --book-color-2: #16A085;
+}
+.book-cover-orange { 
+    --book-color-1: #E67E22; 
+    --book-color-2: #D35400;
+}
+.book-cover-yellow { 
+    --book-color-1: #F1C40F; 
+    --book-color-2: #F39C12;
+}
+.book-cover-lime { 
+    --book-color-1: #A2D95E; 
+    --book-color-2: #8BC34A;
+}
+
+.book-info {
+    width: 130px; 
+    text-align: left;
+    padding: 0 2px; 
+}
+
+.book-title {
+    font-size: 0.9rem; 
+    font-weight: 600;
+    color: #3A3A3A;
+    margin: 0; 
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    min-height: 2.34em; 
+}
+
+.book-author {
+    font-size: 0.8rem;
+    color: #D35400; 
+    font-weight: 500; 
+    margin: 0;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-results-message {
+    text-align: center;
+    padding: 20px;
+    color: #757575;
+    font-size: 0.9rem;
+}
+
+/* Book Detail View Styles */
+.book-detail-view {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    background-color: #FDF6F0; /* Same as body background */
+    min-height: calc(100vh - 50px); /* Ensure it takes full height if content is short, accounting for new nav bar height */
+}
+
+.book-detail-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #FF6B6B;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.back-button svg {
+    margin-right: 5px;
+    color: #FF6B6B;
+}
+
+.book-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book-detail-cover {
+    width: 180px; /* Larger cover */
+    height: 270px; /* Proportionate height */
+    border-radius: 8px;
+    background-color: #E0E0E0; /* Placeholder */
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 8px;
+    box-sizing: border-box;
+    background-image: linear-gradient(135deg, var(--book-color-1) 0%, var(--book-color-2) 100%);
+}
+
+.book-detail-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cdefs%3E%3ClinearGradient id='spine' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%23000;stop-opacity:0.1'/%3E%3Cstop offset='8%25' style='stop-color:%23000;stop-opacity:0.2'/%3E%3Cstop offset='12%25' style='stop-color:%23fff;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23000;stop-opacity:0.05'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='150' fill='url(%23spine)'/%3E%3C/svg%3E") no-repeat;
+    background-size: cover;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.book-detail-cover::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 3px;
+    height: calc(100% - 16px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+    border-radius: 1px;
+}
+
+.book-detail-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3A3A3A;
+    margin: 0 0 5px 0;
+}
+
+.book-detail-author {
+    font-size: 1rem;
+    color: #D35400;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+}
+
+.bookmark-button {
+    background-color: #FFFFFF;
+    border: 1px solid #FF6B6B;
+    color: #FF6B6B;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 25px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.bookmark-button .bookmark-icon {
+    margin-right: 8px;
+    font-size: 1.2rem; /* Make emoji slightly larger */
+}
+
+.bookmark-button[aria-pressed="true"] {
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+}
+
+.detail-section {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 0 10px; /* Add some padding to section text */
+    box-sizing: border-box;
+}
+
+.detail-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3A3A3A;
+    margin: 0 0 8px 0;
+    border-bottom: 1px solid #EAEAEA;
+    padding-bottom: 5px;
+}
+
+.book-detail-summary,
+.book-detail-categories {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555555;
+    white-space: pre-wrap; /* Preserve line breaks from summary if any */
+}
+
+.book-detail-summary.loading {
+    color: #AAAAAA;
+    font-style: italic;
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 480px; /* Match app container width */
+    margin: 0 auto; /* Center it */
+    height: 50px; /* Reduced height */
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    border-top: 1px solid #E8E8E8; /* Lighter border */
+    z-index: 1000;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: #757575;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem; /* Slightly smaller text for compact bar */
+    cursor: pointer;
+    padding: 4px 0; /* Adjust padding if needed */
+    flex-grow: 1;
+    height: 100%;
+    line-height: 1.2; /* Adjust line height for small font */
+}
+
+.nav-button .nav-icon {
+    width: 22px; /* Slightly smaller icon */
+    height: 22px; /* Slightly smaller icon */
+    margin-bottom: 1px; /* Tighter spacing */
+}
+
+.nav-button.active {
+    color: #FF6B6B;
+}
+
+.nav-button.active .nav-icon {
+    stroke: #FF6B6B; /* Ensure icon color changes if it's an SVG stroke */
+    /* fill: #FF6B6B; Consider fill if icons use fill property */
+}
+
+
+/* Scroll Feed View - TikTok/Perplexity Style */
+#scrollFeedView {
+    height: calc(100vh - 50px); /* Full height minus nav bar */
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    background: linear-gradient(135deg, #FDF6F0 0%, #F8F0E8 100%);
+    position: relative;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for cleaner look */
+#scrollFeedView::-webkit-scrollbar {
+    display: none;
+}
+
+#scrollFeedView {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scroll-book-item {
+    height: calc(100vh - 50px); /* Full height per item for snapping */
+    width: 100%;
+    max-width: 480px; /* Match search bar container width */
+    margin: 0 auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 40px 20px;
+    box-sizing: border-box;
+    position: relative; 
+    background: linear-gradient(135deg, #FFFFFF 0%, #FEFEFE 100%);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    margin-bottom: 0;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-book-item:last-child {
+    margin-bottom: 0;
+}
+
+.scroll-book-cover {
+    width: 180px;
+    height: 270px;
+    border-radius: 8px;
+    background-color: #E0E0E0;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin-bottom: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 8px;
+    box-sizing: border-box;
+    background-image: linear-gradient(135deg, var(--book-color-1) 0%, var(--book-color-2) 100%);
+    transform: perspective(800px) rotateY(-2deg) rotateX(2deg);
+    transition: transform 0.3s ease;
+}
+
+.scroll-book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 150'%3E%3Cdefs%3E%3ClinearGradient id='spine' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%23000;stop-opacity:0.1'/%3E%3Cstop offset='8%25' style='stop-color:%23000;stop-opacity:0.2'/%3E%3Cstop offset='12%25' style='stop-color:%23fff;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23000;stop-opacity:0.05'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='150' fill='url(%23spine)'/%3E%3C/svg%3E") no-repeat;
+    background-size: cover;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.scroll-book-cover::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 3px;
+    height: calc(100% - 16px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
+    border-radius: 1px;
+}
+
+.scroll-book-item:hover .scroll-book-cover {
+    transform: perspective(800px) rotateY(0deg) rotateX(0deg) scale(1.02);
+}
+
+.scroll-book-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2C2C2C;
+    margin: 0 0 8px 0;
+    text-align: center;
+    max-width: 380px; /* Constrain to search bar width */
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.scroll-book-author {
+    font-size: 1.1rem;
+    color: #D35400;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    text-align: center;
+    max-width: 380px; /* Constrain to search bar width */
+}
+
+.scroll-book-summary {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555555;
+    max-width: 380px; /* Match search bar width constraint */
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Limit to 6 lines */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    background: rgba(255,255,255,0.8);
+    border-radius: 15px;
+    padding: 18px 22px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    margin-top: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-book-summary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+
+/* Friend Feed View Styles */
+.friend-activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.friend-activity-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 18px 0; /* Increased vertical padding */
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.friend-activity-item:last-child {
+    border-bottom: none;
+}
+
+.friend-activity-avatar {
+    width: 42px; /* Increased size */
+    height: 42px; /* Increased size */
+    border-radius: 50%;
+    background-color: #E0E0E0;
+    color: #3A3A3A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem; /* Increased font size for initial */
+    margin-right: 15px; /* Increased margin */
+    flex-shrink: 0;
+}
+
+.friend-activity-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-activity-text {
+    margin: 0 0 8px 0; /* Increased bottom margin */
+    font-size: 0.95rem; /* Slightly larger */
+    line-height: 1.5; /* Improved line height */
+    color: #3A3A3A;
+}
+
+.friend-activity-text strong {
+    font-weight: 600;
+    color: #3A3A3A;
+}
+
+.friend-activity-text em {
+    font-style: normal; 
+    color: #D35400; 
+}
+
+.friend-activity-review {
+    font-style: italic;
+    color: #606060; /* Softer text color */
+    margin: 8px 0; 
+    padding: 10px 12px; /* Increased padding */
+    border-left: 3px solid #FFA07A; /* Softer accent coral red for quote border */
+    font-size: 0.9rem; /* Slightly larger */
+    line-height: 1.6;
+    background-color: #FFFBF7; /* Very light background tint for quote */
+    border-radius: 4px; /* Subtle border radius */
+}
+
+.friend-activity-rating {
+    color: #FFC107; 
+    font-size: 1.1rem; /* Increased star size */
+    margin: 8px 0; /* Consistent vertical spacing */
+}
+
+.friend-activity-timestamp {
+    font-size: 0.8rem; /* Slightly larger */
+    color: #888888; /* Softer gray */
+    margin-top: 8px; /* Increased top margin */
+    align-self: flex-start;
+}
+
+#noFriendActivityMessage p { 
+    margin: 0;
+}
